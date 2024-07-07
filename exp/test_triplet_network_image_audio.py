@@ -5,7 +5,7 @@ import numpy as np
 import time
 import rere_config as cnf
 import dl_helper as hl
-import rere_dml as dml
+import anchor_dml.rere_triplet_network as dml
 
 
 # from torchtools.optim import RangerLars
@@ -57,8 +57,8 @@ for fn in fns:
     d_out = data_set.label_num
     print("class number:", d_out)
 
-    model = dml.RereDML(d_in, d_out).to(cnf.device)
-    optimizer = optim.RAdam(model.parameters(), lr=1e-4)
+    model = dml.RereTripletNetwork(d_in, d_out).to(cnf.device)
+    optimizer = optim.Adam(model.parameters(), lr=1e-3)
     # optimizer = RangerLars(model.parameters())
 
     for epoch in range(1, epoch_num + 1):
