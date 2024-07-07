@@ -4,7 +4,7 @@ from scipy.io import arff
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
-import dl_model.rere_config as cnf
+import rere_config as cnf
 
 _log_interval = 10
 
