@@ -58,7 +58,7 @@ for fn in fns:
     print("class number:", d_out)
 
     model = dml.RereDML(d_in, d_out).to(cnf.device)
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
+    optimizer = optim.RAdam(model.parameters(), lr=1e-4)
     # optimizer = RangerLars(model.parameters())
 
     for epoch in range(1, epoch_num + 1):
