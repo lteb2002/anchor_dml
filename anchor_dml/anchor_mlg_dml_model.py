@@ -1,11 +1,9 @@
 import torch
 from torch import nn, optim
 from torch.nn import functional as F
-import rere_config as cnf
 import ext.mish as mish
-import svdd.kf as kf
 import numpy as np
-from anchor_dml.rere_triplet_network import Triplet as Trip
+from dl_model.rere_dml import Triplet as Trip
 
 
 # _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
