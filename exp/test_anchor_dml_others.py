@@ -83,7 +83,7 @@ for fn in fns:
         #     if 'linear_trans' in p[0]:
         #         print(p)
         # model.apply(param_init)
-        optimizer = optim.RAdam(model.parameters(), lr=1e-3)
+        optimizer = optim.RAdam(model.parameters(), lr=1e-4)
         # optimizer = RangerLars(model.parameters())
         inter_time = time.time()
         for epoch in range(1, epoch_num + 1):
