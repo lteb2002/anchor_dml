@@ -1,7 +1,7 @@
 import torch
 from torch import nn, optim
 from torch.nn import functional as F
-import dl_model.rere_config as cnf
+import rere_config as cnf
 import ext.mish as mish
 from sklearn.neighbors import KDTree
 import numpy as np
@@ -10,7 +10,7 @@ import numpy as np
 # _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-class RereDML(torch.nn.Module):
+class RereTripletNetwork(torch.nn.Module):
     # the feature number of the data points fed into the net
     _d_in = 0
     # The number of classes

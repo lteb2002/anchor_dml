@@ -1,11 +1,11 @@
 import torch
 from torch import optim
-import dl_model.rere_tsne as tsne
+import rere_tsne as tsne
 import numpy as np
 import time
-import dl_model.rere_config as cnf
-import dl_model.dl_helper as hl
-import dl_model.rere_dml as dml
+import rere_config as cnf
+import dl_helper as hl
+import rere_dml as dml
 
 
 # from torchtools.optim import RangerLars

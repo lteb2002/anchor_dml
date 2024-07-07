@@ -4,9 +4,9 @@ import numpy as np
 import torch
 from torch import optim
 from torch.utils.data import TensorDataset
-import dl_model.anchor_dml.ideal_mlp as mlp
-import dl_model.rere_config as cnf
-import dl_model.dl_helper as hl
+import anchor_dml.ideal_mlp as mlp
+import rere_config as cnf
+import dl_helper as hl
 from sklearn.decomposition import PCA, FastICA, FactorAnalysis, KernelPCA
 
 

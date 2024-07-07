@@ -1,13 +1,13 @@
 import torch, random, os
 from torch import optim
-import dl_model.rere_tsne as tsne
+import rere_tsne as tsne
 import numpy as np
-import dl_model.anchor_dml.anchor_mlg_dml_model as m
-import dl_model.rere_config as cnf
+import anchor_dml.anchor_mlg_dml_model as m
+import rere_config as cnf
 import dl_model.dl_helper as hl
-import ext.radam as radam
-import dl_model.anchor_dml.anchor_sampler as sampler
+import anchor_dml.anchor_sampler as sampler
 import time
+from torchviz import make_dot
 
 
 def train(epoch, model, optimizer, train_loader):
@@ -21,8 +21,6 @@ def _init_fn(worker_id):
 def transform_save():
     # 保存训练好的模型参数
     torch.save(model.state_dict(), model_path)
-    # 变换出Nystrom数据
-    nys_data = model.transform(data_set.data.to(cnf.device)).detach().cpu().numpy()
     # 变换出DML数据
     dml_data = model.encode_dml(data_set.data.to(cnf.device)).detach().cpu().numpy()
     # 可视化DML数据
@@ -30,18 +28,21 @@ def transform_save():
     viz2.save_image(img3)
     # 保存DML变换后的数据
     hl.save_numpy_data_to_csv(dml_data, labels, output2)
+    anchors = model.export_anchors().detach().cpu().numpy()
+    als = ["anchor" for x in range(anchors.shape[0])]
+    anchor_labels = np.array(als)
+    hl.save_numpy_data_to_csv(anchors, anchor_labels, anchor_output)
 
 
 batch_size = 256
 epoch_num = 100
-# sample_size = 100
+# sample_size = 4096
 cnf.fix_torch_random()
 
 fp = 'F:\\fruit360_exp\\'
 # fns = ['fruit360_2','mind14_vec']
 fns = ['mind14_vec']
-
-# fns = ['diabetes', 'segment']
+# fns = ['renttherunway_sample']
 
 for fn in fns:
     input_file = fp + fn + '.csv'
@@ -57,9 +58,8 @@ for fn in fns:
     ins_num = data_set.num
     print("instance number:", ins_num)
 
-    # methods = ['support_vector', 'hclustering','mlig']
-    methods = ['fa', 'ica', 'pca', 'kpca','hclustering']
-    # methods = ['hclustering']
+    # methods = ['support_vector', 'clustering','mlig']
+    methods = ['mlig']
     for method in methods:
         # torch.manual_seed(12)
         train_loader = torch.utils.data.DataLoader(data_set, batch_size=batch_size, shuffle=True, pin_memory=False,
@@ -67,11 +67,11 @@ for fn in fns:
         begin = time.time()
         fdml = fn + '_anchor_dml_' + method + '_l2_2m'
         output2 = fp + fdml + '.csv'
+        anchor_output = fp + fn + '_anchor.csv'
         img3 = fp + 'images\\' + fdml + '.png'
         model_path = fp + 'torch_models\\' + fdml
-        ds = data_set.data.cpu().numpy()
-        base_size = d_in
-        sam = sampler.AnchorSampler(ds, labels, k=base_size)
+        base_num = d_in
+        sam = sampler.AnchorSampler(data_set.data.cpu().numpy(), labels, k=base_num)
         mlg = sam.getSamples(method)
         print("mlg number:", mlg.shape[0])
         print(cnf.device)

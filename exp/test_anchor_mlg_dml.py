@@ -1,12 +1,11 @@
 import torch, random, os
 from torch import optim
-import dl_model.rere_tsne as tsne
+import rere_tsne as tsne
 import numpy as np
 import dl_model.anchor_dml.anchor_mlg_dml_model as m
 import dl_model.rere_config as cnf
 import dl_model.dl_helper as hl
-import ext.radam as radam
-import dl_model.anchor_dml.anchor_sampler as sampler
+import anchor_dml.anchor_sampler as sampler
 import time
 from torchviz import make_dot
 

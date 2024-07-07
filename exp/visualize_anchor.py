@@ -1,14 +1,14 @@
 import numpy as np
 import pandas as pd
-import dl_model.rere_tsne as tsne
+import rere_tsne as tsne
 import seaborn as sns
 from sklearn import manifold
 from sklearn.preprocessing import MinMaxScaler
 
 fp = "E:\\papers\\anchor_dml\\experiments\\"
-original_file = fp + "renttherunway_sample.csv"
-dml_file = fp + "renttherunway_sample_anchor_dml_mlig_l3_2m.csv"
-anchor_file = fp + "renttherunway_sample.csv"
+original_file = fp + "renttherunway.csv"
+dml_file = fp + "renttherunway_anchor_dml_mlig_l3_2m.csv"
+anchor_file = fp + "renttherunway.csv"
 
 img1 = fp + "img1.png"
 img2 = fp + "img2.png"

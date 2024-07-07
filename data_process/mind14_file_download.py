@@ -3,7 +3,7 @@ import librosa
 import torch
 from transformers import AutoFeatureExtractor, WhisperModel, WhisperProcessor
 from datasets import load_dataset
-import dl_model.anchor_dml.vgg_funs as vgg_funs
+import data_process.vgg_funs as vgg_funs
 
 model = WhisperModel.from_pretrained("openai/whisper-base")
 processor = WhisperProcessor.from_pretrained("openai/whisper-base")

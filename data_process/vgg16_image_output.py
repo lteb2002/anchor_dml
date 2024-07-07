@@ -2,7 +2,7 @@ import torch
 import torchvision.models as models
 from torchvision import transforms
 from torchvision.models.vgg import VGG16_Weights
-import dl_model.anchor_dml.vgg_funs as vgg_funs
+import data_process.vgg_funs as vgg_funs
 from PIL import Image
 import os
 
