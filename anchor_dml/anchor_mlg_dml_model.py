@@ -3,7 +3,7 @@ from torch import nn, optim
 from torch.nn import functional as F
 import ext.mish as mish
 import numpy as np
-from dl_model.rere_dml import Triplet as Trip
+from rere_triplet_network import Triplet as Trip
 
 
 # _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -46,11 +46,13 @@ class AnchorMlgDml(torch.nn.Module):
         return xs
 
     # 计算数据的DML损失，适合mini-batch或者batch数据
+    # deprecated
     def compute_dml_loss(self, x, label):
         xs = self.encode_dml(x)
         loss = Trip.compute_dml_loss(xs, label)
         return loss
 
+    # 计算输入数据点和描点之间在变换后空间的成对距离并将距离作为新的数据表征
     def compute_whole_anchor(self, xx, sam_new,dis_fun='eud'):
         width = sam_new.shape[1]
         if dis_fun == 'cos':
