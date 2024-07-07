@@ -63,7 +63,7 @@ for fn in fns:
     d_out = data_set.label_num
     print("class number:", d_out)
 
-    model = dml.RereDML(d_in, d_out).to(cnf.device)
+    model = dml.RereTripletNetwork(d_in, d_out).to(cnf.device)
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
     # optimizer = RangerLars(model.parameters())
 
