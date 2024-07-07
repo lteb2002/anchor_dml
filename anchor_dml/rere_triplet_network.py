@@ -17,7 +17,7 @@ class RereTripletNetwork(torch.nn.Module):
     _d_out = 0
 
     def __init__(self, d_in, d_out):
-        super(RereDML, self).__init__()
+        super(RereTripletNetwork, self).__init__()
         self._d_in = d_in
         self._d_out = d_out  #
         self.dml_module = nn.Sequential(
