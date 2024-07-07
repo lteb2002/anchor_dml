@@ -5,7 +5,7 @@ import numpy as np
 import time
 import rere_config as cnf
 import dl_helper as hl
-import rere_dml as dml
+import anchor_dml.rere_triplet_network as dml
 
 
 # from torchtools.optim import RangerLars
